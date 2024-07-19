@@ -1,0 +1,64 @@
+<h1 class="heading">TIC TAC TOE!!</h1>
+
+<div class="playerpanel">
+    <div class="player">
+        <input type="text" class="player-input" [(ngModel)]="PlayerA.name" [readonly]="!PlayerA.isedit" />
+        <div> 
+        <button class="edit-button" (click)="update('A')">{{PlayerA.isedit?'Save':'Edit'}}</button>
+        <button class="edit-button">X</button>
+        <button *ngIf="PlayerA.isTurn" 
+        class="btn btn-success btn-circle btn-sm">.</button>
+        </div>
+    </div>
+    <div class="reset">
+        <button (click)="reset()" class="betn">Reset</button>
+    </div>
+    <div class="player">
+        <input type="text" class="player-input" [(ngModel)]="PlayerB.name" [readonly]="!PlayerB.isedit"/>
+        <div>
+        <button class="edit-button" (click)="update('B')" >{{PlayerB.isedit?"Save":"Edit"}}</button>
+        <button class="edit-button">O</button>
+        <button *ngIf="PlayerB.isTurn" 
+        class="btn btn-success btn-circle btn-sm">T</button>
+       </div>
+    </div>
+</div>
+
+<div>
+    <h4  *ngIf="gameStatus!=='gameActive'" class="gamestatus">{{gameStatus}}</h4>
+</div>
+<div class="game">
+    <div class="d-flex flex-column">
+    <div class="d-flex">
+        <span class="square" (click)="makemove(1)"
+        [ngClass]="{'squarematch':winGrid.includes(1)}">{{cells[1]}}</span>
+        <span class="square" (click)="makemove(2)"
+        [ngClass]="{'squarematch':winGrid.includes(2)}">{{cells[2]}}</span>
+        <span class="square" (click)="makemove(3)"
+        [ngClass]="{'squarematch':winGrid.includes(3)}">{{cells[3]}}</span>
+    </div>
+    <div class="d-flex">
+        <span class="square" (click)="makemove(4)"
+        [ngClass]="{'squarematch':winGrid.includes(4)}">{{cells[4]}}</span>
+        <span class="square" (click)="makemove(5)"
+        [ngClass]="{'squarematch':winGrid.includes(5)}">{{cells[5]}}</span>
+        <span class="square" (click)="makemove(6)"
+        [ngClass]="{'squarematch':winGrid.includes(6)}">{{cells[6]}}</span>
+    </div>
+    <div class="d-flex">
+        <span class="square"(click)="makemove(7)"
+        [ngClass]="{'squarematch':winGrid.includes(7)}">{{cells[7]}}</span>
+        <span class="square"(click)="makemove(8)"
+        [ngClass]="{'squarematch':winGrid.includes(8)}"
+        >{{cells[8]}}</span>
+        <span class="square"(click)="makemove(9)"
+        [ngClass]="{'squarematch':winGrid.includes(9)}">{{cells[9]}}</span>
+    </div>
+    </div>
+</div>
+<div class="movesorder">
+    <ul>
+        <li *ngFor="let move of allMoves.slice().reverse()">{{move}}</li>
+    </ul>
+   
+</div>
